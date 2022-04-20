@@ -3,6 +3,7 @@
 //
 
 #include "../include/Oyun.h"
+#include "../include/Dosya.h"
 
 Game new_game(const int *lucky_numbers, size_t size) {
     Game this;
@@ -15,6 +16,10 @@ Game new_game(const int *lucky_numbers, size_t size) {
     this->round = 0;
     this->game_balance = 0;
     this->game_over = false;
+
+    // fonksiyon bağlantıları
+    this->play_round = &play_round;
+    this->delete = &delete_game;
     return this;
 }
 
@@ -77,6 +82,7 @@ bool play_round(Game game, Player players[], size_t length) {
 
 void delete_game(Game this) {
     if (this != NULL) {
+        free(this->lucky_numbers);
         free(this);
     }
 }

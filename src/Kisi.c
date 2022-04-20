@@ -3,6 +3,7 @@
 //
 
 #include "../include/Kisi.h"
+#include "../include/Dosya.h"
 
 enum player { Name, Balance, Rate, Number };
 
@@ -15,6 +16,8 @@ Player new_Player(char *name, double balance, double rate, int player_number) {
     this->rate = rate;
     this->player_number = player_number;
     this->disqualified = false;
+
+    this->delete = &delete_Player;
     return this;
 }
 
@@ -35,7 +38,7 @@ Player player_from_string(char* player_string) {
     return player;
 }
 
-void delete_Player(const Player this) {
+void delete_Player(Player this) {
     if (this == NULL) return;
     free(this);
 }

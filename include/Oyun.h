@@ -7,13 +7,15 @@
 
 #include <malloc.h>
 #include "Kisi.h"
-#include "Yardimci.h"
 
 struct GAME {
     int round;
     double game_balance;
     int *lucky_numbers;
     bool game_over;
+
+    bool (*play_round)(struct GAME* game, Player* player, size_t length);
+    void (*delete)(struct GAME* game);
 };
 
 typedef struct GAME *Game;
